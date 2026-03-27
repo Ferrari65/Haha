@@ -98,14 +98,13 @@ img{
 
 <body>
 
-<!-- FUNDO DE CORAÇÕES -->
 <div class="hearts" id="hearts"></div>
 
 <div class="card">
 
 <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="fofo">
 
-<h1>Haha 😍</h1>
+<h1>Mensagem</h1>
 <p>Oi Lindo</p>
 
 <button class="btn" onclick="gerar('dia')">Bom dia</button>
@@ -116,13 +115,15 @@ img{
 </div>
 
 <script>
-function digitarTexto(elemento, texto, velocidade=25){
-  elemento.innerHTML = "";
+function digitarTexto(elemento, texto, velocidade = 25){
+  if (!elemento) return;
+
+  elemento.textContent = "";
   let i = 0;
 
   function escrever(){
     if(i < texto.length){
-      elemento.innerHTML += texto.charAt(i);
+      elemento.textContent += texto.charAt(i);
       i++;
       setTimeout(escrever, velocidade);
     }
@@ -137,32 +138,31 @@ function gerar(periodo){
   let base = '';
 
   if(periodo === 'dia'){
-    base = "lindo bom dia bom trabalho ta? espero que voce esteja bem, hoje voce esta bem... bem assim.. caladinho, mas eu imagino que é por conta da demanda ta? fique em paz, eu super compreendo viu? ";
+    base = "Lindo, bom dia. Bom trabalho, tá? Espero que você esteja bem. Hoje você está mais quietinho, mas imagino que seja por conta da demanda. Fique em paz, eu compreendo.";
   } else {
-    base = "lindo boa noite durma bem bom descanso ta? espero que voce esteja bem, hoje voce ficou bem... bem assim.. caladinho, mas eu imagino que é por conta da demanda ta? fique em paz, eu super compreendo viu? ";
+    base = "Lindo, boa noite. Durma bem, bom descanso, tá? Espero que você esteja bem. Hoje você ficou mais quietinho, mas imagino que seja por conta da demanda. Fique em paz, eu compreendo.";
   }
 
-  const complemento = "Independente de como tenha sido... eu só quero que você saiba que eu me importo muito com você. 💗";
+  const complemento = " Independente de como tenha sido, eu só quero que você saiba que eu me importo muito com você.";
 
-  const textoFinal = base + complemento;
-
-  digitarTexto(msgDiv, textoFinal);
+  digitarTexto(msgDiv, base + complemento);
 }
 
-/* GERAR CORAÇÕES */
 function criarCoracao(){
+  const container = document.getElementById('hearts');
+  if (!container) return;
+
   const heart = document.createElement('div');
   heart.classList.add('heart');
-  heart.innerText = '💗';
+  heart.textContent = '❤';
+
   heart.style.left = Math.random() * 100 + 'vw';
   heart.style.fontSize = (12 + Math.random() * 20) + 'px';
   heart.style.animationDuration = (4 + Math.random() * 3) + 's';
 
-  document.getElementById('hearts').appendChild(heart);
+  container.appendChild(heart);
 
-  setTimeout(() => {
-    heart.remove();
-  }, 7000);
+  setTimeout(() => heart.remove(), 7000);
 }
 
 setInterval(criarCoracao, 300);
