@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mensagem Especial</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg,#ffe4ec,#fff0f5);
+  display:flex;justify-content:center;align-items:center;height:100vh;
+}
+
+.card{
+  background:#fff;
+  padding:30px 25px;
+  border-radius:22px;
+  box-shadow:0 15px 40px rgba(255,105,135,.25);
+  width:90%;max-width:420px;text-align:center;
+  animation:fadeIn 1s ease;
+}
+
+h1{color:#ff4d6d;margin-bottom:8px}
+p{color:#777;margin-bottom:15px}
+
+img{
+  width:120px;
+  margin-bottom:10px;
+  animation:float 2s infinite ease-in-out;
+}
+
+.btn{
+  background:#ff4d6d;
+  color:#fff;
+  border:none;
+  padding:12px;
+  margin:6px 0;
+  border-radius:50px;
+  width:100%;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+  background:#ff3355;
+}
+
+#mensagem{
+  margin-top:15px;
+  min-height:70px;
+  color:#555;
+  font-style:italic;
+  line-height:1.6;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+  100%{transform:translateY(0)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="fofo">
+
+<h1>Haha 😍</h1>
+<p>Oi Lindo</p>
+
+<button class="btn" onclick="gerar('dia')">Bom dia</button>
+<button class="btn" onclick="gerar('noite')">Boa noite</button>
+
+<div id="mensagem"></div>
+
+</div>
+
+<script>
+function digitarTexto(elemento, texto, velocidade=25){
+  elemento.innerHTML = "";
+  let i = 0;
+
+  function escrever(){
+    if(i < texto.length){
+      elemento.innerHTML += texto.charAt(i);
+      i++;
+      setTimeout(escrever, velocidade);
+    }
+  }
+
+  escrever();
+}
+
+function gerar(periodo){
+  const msgDiv = document.getElementById('mensagem');
+
+  let base = '';
+
+  if(periodo === 'dia'){
+    base = "lindo bom dia bom trabalho ta? espero que voce esteja bem, hoje voce esta bem... bem assim.. caladinho, mas eu imagino que é por conta da demanda ta? fique em paz, eu super compreendo viu?";
+  } else {
+    base = "lindo boa noite durma bem bom descanso ta? espero que voce esteja bem, hoje voce ficou bem... bem assim.. caladinho, mas eu imagino que é por conta da demanda ta? fique em paz, eu super compreendo viu ?";
+  }
+
+  const complemento = "Independente de como tenha sido... eu só quero que você saiba que eu me importo muito com você. 💗";
+
+  const textoFinal = base + complemento;
+
+  digitarTexto(msgDiv, textoFinal);
+}
+</script>
+
+</body>
+</html>
